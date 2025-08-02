@@ -27,7 +27,7 @@ janus-meet/
 ### 1. Clone repository beserta submodule
 
 ```bash
-git clone --recurse-submodules git@github.com:your-org/janus-meet.git
+git clone --recurse-submodules https://github.com/muh-dirga-f/janus-meet.git
 cd janus-meet
 ````
 
