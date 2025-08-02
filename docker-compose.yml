@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/janusmeet
+      - JWT_SECRET=supersecret
+      - JANUS_ADMIN_URL=http://janus:7088/admin
+    depends_on:
+      - db
+      - janus
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_BACKEND_URL=http://localhost:3000
+      - VITE_JANUS_WSS=ws://localhost:8188/janus
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:15
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: janusmeet
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  janus:
+    image: canyan/janus-gateway
+    ports:
+      - "8188:8188" # WebSocket
+      - "7088:7088" # Admin REST
+    volumes:
+      - ./janus-config:/usr/local/etc/janus
+
+volumes:
+  db-data:

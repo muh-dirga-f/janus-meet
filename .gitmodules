@@ -1,0 +1,7 @@
+[submodule "apps/frontend"]
+    path = apps/frontend
+    url = https://github.com/muh-dirga-f/janus-meet-frontend.git
+
+[submodule "apps/backend"]
+    path = apps/backend
+    url = https://github.com/muh-dirga-f/janus-meet-backend.git

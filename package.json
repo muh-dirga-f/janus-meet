@@ -1,0 +1,19 @@
+{
+    "name": "janus-meet",
+    "private": true,
+    "version": "1.0.0",
+    "workspaces": [
+        "apps/backend",
+        "apps/frontend"
+    ],
+    "scripts": {
+        "start": "yarn workspace janus-meet-backend start && yarn workspace janus-meet-frontend start",
+        "dev": "concurrently \"yarn workspace janus-meet-backend dev\" \"yarn workspace janus-meet-frontend dev\"",
+        "build": "yarn workspace janus-meet-backend build && yarn workspace janus-meet-frontend build",
+        "lint": "yarn workspace janus-meet-backend lint && yarn workspace janus-meet-frontend lint",
+        "test": "yarn workspace janus-meet-backend test && yarn workspace janus-meet-frontend test"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.0"
+    }
+}
